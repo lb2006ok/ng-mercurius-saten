@@ -1,0 +1,7 @@
+/* You can add global styles to this file, and also import other style files */
+@import '~@nebular/auth/styles/_all.scss';
+
+@include nb-install() {
+  @include nb-theme-global();
+  @include nb-auth-global(); // append the install mixin inside of the nb-install
+};
