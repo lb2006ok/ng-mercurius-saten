@@ -4,14 +4,11 @@ import { FormsModule } from '@angular/forms';
 import { RouterModule } from '@angular/router';
 
 import { NgxAuthRoutingModule } from './auth-routing.module';
-import { NbAuthModule } from '@nebular/auth';
-import {
-  NbAlertModule,
-  NbButtonModule,
-  NbCheckboxModule,
-  NbInputModule
-} from '@nebular/theme';
 import { LoginComponent } from './login/login.component';
+import { RegisterComponent } from './register/register.component';
+import { MatFormFieldModule } from '@angular/material/form-field';
+import { MatInputModule } from '@angular/material';
+import { MatButtonModule } from '@angular/material/button';
 
 
 @NgModule({
@@ -19,16 +16,14 @@ import { LoginComponent } from './login/login.component';
     CommonModule,
     FormsModule,
     RouterModule,
-    NbAlertModule,
-    NbInputModule,
-    NbButtonModule,
-    NbCheckboxModule,
     NgxAuthRoutingModule,
-
-    NbAuthModule,
+    MatFormFieldModule,
+    MatInputModule,
+    MatButtonModule,
   ],
   declarations: [
-    LoginComponent
+    LoginComponent,
+    RegisterComponent,
   ],
 })
 export class NgxAuthModule {

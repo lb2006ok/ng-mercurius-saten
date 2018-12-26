@@ -1,12 +1,12 @@
 import { BrowserModule } from '@angular/platform-browser';
-import { NgModule} from '@angular/core';
-import { HttpClientModule} from '@angular/common/http';
+import { NgModule } from '@angular/core';
+import { HttpClientModule } from '@angular/common/http';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
-import { NoopAnimationsModule } from '@angular/platform-browser/animations';
-import { NbThemeModule, NbLayoutModule, NbSidebarModule, NbSidebarService, NbUserModule, NbButtonModule } from '@nebular/theme';
-import { NbPasswordAuthStrategy, NbAuthModule } from '@nebular/auth';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { MatButtonModule } from '@angular/material/button';
+import { AuthService } from './auth/auth.service';
 
 @NgModule({
   declarations: [
@@ -15,25 +15,14 @@ import { NbPasswordAuthStrategy, NbAuthModule } from '@nebular/auth';
   imports: [
     BrowserModule,
     AppRoutingModule,
-    NoopAnimationsModule,
     HttpClientModule,
-    NbThemeModule.forRoot({ name: 'corporate' }),
-    NbAuthModule.forRoot({
-      strategies: [
-        NbPasswordAuthStrategy.setup({
-          name: 'email',
-        }),
-      ],
-      forms: {},
-    }),
-    NbLayoutModule,
-    NbSidebarModule,
-    NbUserModule,
-    NbButtonModule,
+    BrowserAnimationsModule,
+    MatButtonModule,
   ],
   providers: [
-    NbSidebarService
+    AuthService,
   ],
   bootstrap: [AppComponent]
 })
-export class AppModule { }
+export class AppModule {
+}
