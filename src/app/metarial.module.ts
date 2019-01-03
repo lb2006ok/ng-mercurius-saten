@@ -16,6 +16,7 @@ import {
   MatDialogModule,
   MatTableModule,
   MatSortModule,
+  MatPaginatorModule,
 } from '@angular/material';
 import { MatMomentDateModule } from '@angular/material-moment-adapter';
 
@@ -38,6 +39,7 @@ import { MatMomentDateModule } from '@angular/material-moment-adapter';
     MatDialogModule,
     MatTableModule,
     MatSortModule,
+    MatPaginatorModule,
   ],
   exports: [
     MatButtonModule,
@@ -57,6 +59,7 @@ import { MatMomentDateModule } from '@angular/material-moment-adapter';
     MatDialogModule,
     MatTableModule,
     MatSortModule,
+    MatPaginatorModule,
   ],
   providers: [
   ]
