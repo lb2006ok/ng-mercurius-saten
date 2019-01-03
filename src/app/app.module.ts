@@ -18,6 +18,8 @@ import { SidenavListComponent } from './navigation/sidenav-list/sidenav-list.com
 import { NewTrainingComponent } from './training/new-training/new-training.component';
 import { PastTrainingComponent } from './training/past-training/past-training.component';
 import { StopTrainingComponent } from './training/current-training/stop-training.component';
+import { AuthService } from './auth/auth.service';
+import { TrainingService } from './training/training.service';
 
 @NgModule({
   declarations: [
@@ -44,7 +46,8 @@ import { StopTrainingComponent } from './training/current-training/stop-training
     MetarialModule,
   ],
   providers: [
-    // AuthService,
+    AuthService,
+    TrainingService,
   ],
   bootstrap: [AppComponent],
   entryComponents: [

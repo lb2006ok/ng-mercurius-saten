@@ -9,7 +9,6 @@
         type="email"
         matInput
         placeholder="Your email"
-        ngModel
         formControlName="email"
         name="email">
       <mat-error *ngIf="signupForm.controls.email.errors?.required">Email is not empty</mat-error>
@@ -20,7 +19,6 @@
         type="password"
         matInput
         placeholder="Your password"
-        ngModel
         formControlName="password"
         name="password">
       <mat-error>Should be at least 6 characters long</mat-error>
