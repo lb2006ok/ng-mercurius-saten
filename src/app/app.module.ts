@@ -4,6 +4,7 @@ import { HttpClientModule } from '@angular/common/http';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { AngularFireModule } from 'angularfire2';
 import { AngularFirestoreModule } from 'angularfire2/firestore';
+import { AngularFireAuthModule } from 'angularfire2/auth';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -49,6 +50,7 @@ import { environment } from '../environments/environment';
     MetarialModule,
     AngularFireModule.initializeApp(environment.firebase, 'ng-mercurius-saten'),
     AngularFirestoreModule,
+    AngularFireAuthModule,
   ],
   providers: [
     AuthService,

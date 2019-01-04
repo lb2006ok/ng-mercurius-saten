@@ -9,11 +9,10 @@ import { map } from 'rxjs/operators';
 export class TrainingService {
   exerciseChanged = new Subject<Exercise>();
   exercisesChanged = new Subject<Exercise[]>();
+  finishedExercisesChanged = new Subject<Exercise[]>();
+
   private availableExercises: Exercise[];
-
-
   private runningExercise: Exercise;
-  private exercises: Exercise[] = [];
 
   constructor(private db: AngularFirestore) {
     // this.availableExercises = db.collection().snapshotChanges().pipe(map)
@@ -34,7 +33,7 @@ export class TrainingService {
   }
 
   completeExercise() {
-    this.exercises.push({
+    this.addDataToDatabase({
       ...this.runningExercise,
       date: new Date(),
       state: 'completed'
@@ -44,7 +43,7 @@ export class TrainingService {
   }
 
   cancelExercise(progress: number) {
-    this.exercises.push({
+    this.addDataToDatabase({
       ...this.runningExercise,
       duration: this.runningExercise.duration * (progress / 100),
       calories: this.runningExercise.calories * (progress / 100),
@@ -56,7 +55,7 @@ export class TrainingService {
   }
 
   startExercise(selectId: string) {
-    console.log()
+    
     this.runningExercise = this.availableExercises.find(ex => ex.id === selectId);
     this.exerciseChanged.next({...this.runningExercise});
   }
@@ -65,7 +64,16 @@ export class TrainingService {
     return {...this.runningExercise};
   }
 
-  getCompleteOrCancelledExercises() {
-    return this.exercises.slice();
+  fetchCompleteOrCancelledExercises() {
+    this.db
+      .collection("finishedExercises")
+      .valueChanges()
+      .subscribe((exercises: Exercise[]) => {
+        this.finishedExercisesChanged.next(exercises);
+      });
+  }
+
+  addDataToDatabase(exercise: Exercise){
+    this.db.collection('finishedExercises').add(exercise);
   }
 }
