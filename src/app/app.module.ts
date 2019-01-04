@@ -46,9 +46,9 @@ import { environment } from '../environments/environment';
     AppRoutingModule,
     ReactiveFormsModule,
     HttpClientModule,
-    AngularFireModule.initializeApp(environment.firebase),
-    AngularFirestoreModule,
     MetarialModule,
+    AngularFireModule.initializeApp(environment.firebase, 'ng-mercurius-saten'),
+    AngularFirestoreModule,
   ],
   providers: [
     AuthService,
