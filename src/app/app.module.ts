@@ -24,6 +24,7 @@ import { StopTrainingComponent } from './training/current-training/stop-training
 import { AuthService } from './auth/auth.service';
 import { TrainingService } from './training/training.service';
 import { environment } from '../environments/environment';
+import { UIService } from './share/ui.service';
 
 @NgModule({
   declarations: [
@@ -48,13 +49,14 @@ import { environment } from '../environments/environment';
     ReactiveFormsModule,
     HttpClientModule,
     MetarialModule,
-    AngularFireModule.initializeApp(environment.firebase, 'ng-mercurius-saten'),
+    AngularFireModule.initializeApp(environment.firebase),
     AngularFirestoreModule,
     AngularFireAuthModule,
   ],
   providers: [
     AuthService,
     TrainingService,
+    UIService,
   ],
   bootstrap: [AppComponent],
   entryComponents: [

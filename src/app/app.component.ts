@@ -1,18 +1,19 @@
 import { Component, OnInit } from '@angular/core';
 import * as firebase from 'firebase';
+import { AuthService } from './auth/auth.service';
 
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.css']
 })
-export class AppComponent implements OnInit{
-  title = 'ng-mercurius-saten';
+export class AppComponent implements OnInit {
+
+  constructor(private authService: AuthService) {
+
+  }
 
   ngOnInit() {
-    firebase.initializeApp({
-      apiKey: "AIzaSyBgYLdR9h43Mi1FGQV2P9Bs3lxESuO5ycs",
-      authDomain: "ng-mercurius-saten.firebaseapp.com",
-    })
+    this.authService.initAuthListener();
   }
 }
