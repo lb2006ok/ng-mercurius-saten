@@ -1,11 +1,13 @@
-import { Component, OnDestroy, OnInit } from '@angular/core';
+import { Component, OnInit } from "@angular/core";
 import { FormControl, FormGroup, Validators } from "@angular/forms";
 import { DateAdapter, MAT_DATE_LOCALE } from "@angular/material";
 import { MomentDateAdapter } from "@angular/material-moment-adapter";
-import { Subscription } from "rxjs";
+import { Observable } from "rxjs";
+import { Store } from "@ngrx/store";
 
 import { AuthService } from "../auth.service";
 import { UIService } from "../../shared/ui.service";
+import * as fromRoot from "../../app.reducer";
 
 @Component({
   selector: "app-signup",
@@ -20,19 +22,19 @@ import { UIService } from "../../shared/ui.service";
     }
   ]
 })
-export class SignupComponent implements OnInit, OnDestroy {
+export class SignupComponent implements OnInit {
   signupForm: FormGroup;
   maxDate;
-  isLoading: boolean = false;
-  loadingSubs: Subscription;
-  constructor(private authService: AuthService, private uiService: UIService) {}
+  isLoading$: Observable<boolean>;
+
+  constructor(
+    private authService: AuthService,
+    private uiService: UIService,
+    private store: Store<fromRoot.State>
+  ) {}
 
   ngOnInit() {
-    this.loadingSubs = this.uiService.loadingStateChanged.subscribe(
-      (isLoading: boolean) => {
-        this.isLoading = isLoading;
-      }
-    );
+    this.isLoading$ = this.store.select(fromRoot.getIsLoading);
     this.maxDate = new Date();
     this.maxDate.setFullYear(this.maxDate.getFullYear() - 18);
     this.signupForm = new FormGroup({
@@ -51,11 +53,5 @@ export class SignupComponent implements OnInit, OnDestroy {
       email: this.signupForm.value.email,
       password: this.signupForm.value.password
     });
-  }
-
-  ngOnDestroy() {
-    if(this.loadingSubs){
-      this.loadingSubs.unsubscribe();
-    }
   }
 }
