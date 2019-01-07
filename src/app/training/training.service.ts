@@ -4,7 +4,7 @@ import { Injectable } from '@angular/core';
 
 import { Exercise } from './exercise.model';
 import { map } from 'rxjs/operators';
-import { UIService } from '../share/ui.service';
+import { UIService } from '../shared/ui.service';
 
 @Injectable()
 export class TrainingService {

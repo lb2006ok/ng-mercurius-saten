@@ -2,7 +2,7 @@ import { Component, OnDestroy, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { AuthService } from '../auth.service';
 import { Subscription } from 'rxjs';
-import { UIService } from '../../share/ui.service';
+import { UIService } from '../../shared/ui.service';
 
 @Component({
   selector: 'app-login',
@@ -20,7 +20,7 @@ export class LoginComponent implements OnInit, OnDestroy {
 
   ngOnInit() {
     this.loadingSubs = this.uiService.loadingStateChanged.subscribe(
-      isLoading => {
+      (isLoading: boolean) => {
         this.isLoading = isLoading;
       }
     );
@@ -41,6 +41,8 @@ export class LoginComponent implements OnInit, OnDestroy {
   }
 
   ngOnDestroy() {
-    this.loadingSubs.unsubscribe();
+    if(this.loadingSubs){
+      this.loadingSubs.unsubscribe();
+    }
   }
 }

@@ -5,7 +5,7 @@ import { MomentDateAdapter } from "@angular/material-moment-adapter";
 import { Subscription } from "rxjs";
 
 import { AuthService } from "../auth.service";
-import { UIService } from "../../share/ui.service";
+import { UIService } from "../../shared/ui.service";
 
 @Component({
   selector: "app-signup",
@@ -29,7 +29,7 @@ export class SignupComponent implements OnInit, OnDestroy {
 
   ngOnInit() {
     this.loadingSubs = this.uiService.loadingStateChanged.subscribe(
-      isLoading => {
+      (isLoading: boolean) => {
         this.isLoading = isLoading;
       }
     );
@@ -54,6 +54,8 @@ export class SignupComponent implements OnInit, OnDestroy {
   }
 
   ngOnDestroy() {
-    this.loadingSubs.unsubscribe();
+    if(this.loadingSubs){
+      this.loadingSubs.unsubscribe();
+    }
   }
 }

@@ -4,7 +4,7 @@ import { NgForm } from '@angular/forms';
 import { AngularFirestore } from 'angularfire2/firestore';
 import { Subscription } from 'rxjs';
 import { Exercise } from '../exercise.model';
-import { UIService } from '../../share/ui.service';
+import { UIService } from '../../shared/ui.service';
 
 @Component({
   selector: 'app-new-training',
@@ -32,7 +32,7 @@ export class NewTrainingComponent implements OnInit, OnDestroy {
       }
     );
     this.loadingSubscription = this.uiService.loadingStateChanged.subscribe(
-      isLoading => {
+      (isLoading: boolean) => {
         this.isLoading = isLoading;
       }
     );
@@ -44,8 +44,12 @@ export class NewTrainingComponent implements OnInit, OnDestroy {
   }
 
   ngOnDestroy() {
-    this.exercisesSubscription.unsubscribe();
-    this.loadingSubscription.unsubscribe();
+    if(this.exercisesSubscription){
+      this.exercisesSubscription.unsubscribe();
+    }
+    if(this.loadingSubscription){
+      this.loadingSubscription.unsubscribe();
+    }
   }
 
   onStartTraining(form: NgForm) {

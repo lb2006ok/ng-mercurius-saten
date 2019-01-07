@@ -5,7 +5,7 @@ import { Subject } from "rxjs";
 
 import { AuthData } from "./auth-data.model";
 import { TrainingService } from "../training/training.service";
-import { UIService } from '../share/ui.service';
+import { UIService } from '../shared/ui.service';
 
 @Injectable()
 export class AuthService {

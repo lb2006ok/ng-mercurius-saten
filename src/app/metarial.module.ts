@@ -68,6 +68,6 @@ import { MatMomentDateModule } from '@angular/material-moment-adapter';
   ]
 
 })
-export class MetarialModule {
+export class MeterialModule {
 
 }
